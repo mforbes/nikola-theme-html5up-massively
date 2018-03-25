@@ -1,0 +1,11 @@
+[Theme]
+engine = jinja
+parent = base-jinja
+author = Michael McNeil Forbes
+author_url = https://github.com/mforbes/nikola-theme-html5up-massively/
+based_on = HTML5UP <https://html5up.net>
+license = MIT
+tags = html5up
+
+[Family]
+family = html5up3
