@@ -1,0 +1,85 @@
+{#  -*- coding: utf-8 -*- #}
+{% import 'base_helper.tmpl' as base with context %}
+
+{% macro html_header() %}
+	<!-- Header -->
+  <header id="header">
+    {{ html_site_title() }}
+		{{ html_translation_header() }}
+  </header>
+  {{ html_navigation_links() }}
+  {% if search_form %}
+    <div class="searchform" role="search">
+      {{ search_form }}
+    </div>
+  {% endif %}
+  {{ template_hooks['page_header']() }}
+{% endmacro %}
+
+{% macro html_site_title() %}
+	<a href="{{ abs_link(_link("root", None, lang)) }}"
+		 title="{{ blog_title|e }}" rel="home" class="logo">
+		 {% if logo_url %}
+       <img src="{{ logo_url }}" alt="{{ blog_title|e }}" id="logo">
+		 {% endif %}
+		 
+		 {% if show_blog_title %}
+       <span id="blog-title">{{ blog_title|e }}</span>
+		 {% endif %}
+	</a>
+{% endmacro %}
+
+{% macro html_navigation_links() %}
+	{% if html5up %}
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">This is Massively</a></li>
+							<li><a href="generic.html">Generic Page</a></li>
+							<li><a href="elements.html">Elements Reference</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+  {% else %}
+    <nav id="menu">
+    <ul>
+    {% for url, text in navigation_links[lang] %}
+        {% if isinstance(url, tuple) %}
+            <li> {{ text }}
+            <ul>
+            {% for suburl, text in url %}
+                {% if rel_link(permalink, suburl) == "#" %}
+                    <li class="active"><a href="{{ permalink }}">{{ text }}<span class="sr-only"> {{ messages("(active)", lang) }}</span></a></li>
+                {% else %}
+                    <li><a href="{{ suburl }}">{{ text }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% else %}
+            {% if rel_link(permalink, url) == "#" %}
+                <li class="active"><a href="{{ permalink }}">{{ text }}<span class="sr-only"> {{ messages("(active)", lang) }}</span></a></li>
+            {% else %}
+                <li><a href="{{ url }}">{{ text }}</a></li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {{ template_hooks['menu']() }}
+    {{ template_hooks['menu_alt']() }}
+    </ul>
+    </nav>
+	{% endif %}
+{% endmacro %}
+
+{% macro html_translation_header() %}
+    {% if translations|length > 1 %}
+        <div id="toptranslations">
+            <h2>{{ messages("Languages:") }}</h2>
+            {{ base.html_translations() }}
+        </div>
+    {% endif %}
+{% endmacro %}
