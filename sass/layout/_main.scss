@@ -24,11 +24,13 @@
 			}
 		}
 
-		> footer {
+		// >
+		footer {
 			text-align: center;
 		}
 
-		> .post {
+		// >
+		.post {
 			@include padding((_size(padding) * 4), (_size(padding) * 4));
 
 			header {
@@ -73,7 +75,8 @@
 			}
 		}
 
-		> .posts {
+		// >
+		.posts {
 			@include flexgrid((
 				columns:			2,
 				gutters:			(_size(padding) * 4),

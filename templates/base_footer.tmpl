@@ -2,23 +2,6 @@
 
 {% macro html_footer() %}
 	{% if html5up %}
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
-
-					</div>
-
 				<!-- Footer -->
 					<footer id="footer">
 						<section>
@@ -64,11 +47,15 @@
 								</ul>
 							</section>
 						</section>
+						{{ template_hooks['page_footer']() }}
 					</footer>
-					
-				<!-- Copyright -->
+					<!-- Copyright -->
 					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+						<ul>
+							<li>{{ content_footer|replace(" - ", "</li><li>")|replace(" | ", "</li><li>") }}
+							</li>
+							<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+						</ul>
 					</div>
   {% else %}
     {% if content_footer %}

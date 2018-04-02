@@ -31,13 +31,27 @@
 
 {% macro html_navigation_links() %}
 	{% if html5up %}
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">This is Massively</a></li>
-							<li><a href="generic.html">Generic Page</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
-						</ul>
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				{% for url, text in navigation_links[lang] %}
+					{% if isinstance(url, tuple) %}
+						{% for suburl, text in url %}
+							{% if rel_link(permalink, suburl) == "#" %}
+                <li class="active"><a href="{{ permalink }}">{{ text }}<span class="sr-only"> {{ messages("(active)", lang) }}</span></a></li>
+							{% else %}
+                <li><a href="{{ suburl }}">{{ text }}</a></li>
+							{% endif %}
+						{% endfor %}
+					{% else %}
+            {% if rel_link(permalink, url) == "#" %}
+              <li class="active"><a href="{{ permalink }}">{{ text }}<span class="sr-only"> {{ messages("(active)", lang) }}</span></a></li>
+            {% else %}
+              <li><a href="{{ url }}">{{ text }}</a></li>
+            {% endif %}
+					{% endif %}
+				{% endfor %}
+			</ul>
 						<ul class="icons">
 							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
