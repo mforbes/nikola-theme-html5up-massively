@@ -2,27 +2,25 @@
 
 {% block content %}
 	<!-- Begin post-list {{ post_list_id }} -->
-	<section class="posts post-list" id="{{ post_list_id }}">
-		{% if posts %}
-			{% for post in posts %}
-				<article class="post-list-item">
-					<header>
-						<span class="date">
-							{{ post.formatted_date(date_format)|e }}
-						</span>
-						<h2><a href="{{ post.permalink(lang) }}">
-								{{ post.title(lang)|e }}</a></h2>
-					</header>
-					<a href="{{ post.permalink(lang) }}" class="image fit">
-						<img src="/images/pic02.jpg" alt="" /></a>
-					<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-					<ul class="actions">
-						<li><a href="{{ post.permalink(lang) }}" class="button">Full Story</a></li>
-					</ul>
-				</article>
-			{% endfor %}
-    {% endif %}
-	</section>
+	{% if posts %}
+		{% for post in posts %}
+			<article class="post-list-item post featured">
+				<header class="major">
+					<span class="date">
+						{{ post.formatted_date(date_format)|e }}
+					</span>
+					<h2><a href="{{ post.permalink(lang) }}">
+							{{ post.title(lang)|e }}</a></h2>
+							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+							<a href="{{ post.permalink(lang) }}" class="image fit">
+								<img src="/images/pic02.jpg" alt="" /></a>
+				</header>
+				<ul class="actions">
+					<li><a href="{{ post.permalink(lang) }}" class="button">Full Story</a></li>
+				</ul>
+			</article>
+		{% endfor %}
+  {% endif %}
 	<!-- End post-list {{ post_list_id }} -->
 {% endblock %}
 
