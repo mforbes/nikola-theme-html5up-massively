@@ -15,7 +15,8 @@
 	header {
 		cursor: default;
 
-		> .date {
+		// >
+		.date {
 			display: block;
 			font-size: 0.8rem;
 			height: 1;
@@ -23,27 +24,32 @@
 			position: relative;
 		}
 
-		> p {
+		// >
+		p {
 			font-style: italic;
 		}
 
-		> h1 + p {
+		// >
+		h1 + p {
 			font-size: 1.1rem;
 			margin-top: -0.5rem;
 			line-height: 2;
 		}
 
-		> h2 + p {
+		// >
+		h2 + p {
 			font-size: 1rem;
 			margin-top: -0.75rem;
 		}
 
-		> h3 + p {
+		// >
+    h3 + p {
 			font-size: 0.9rem;
 			margin-top: -0.75rem;
 		}
 
-		> h4 + p {
+		// >
+    h4 + p {
 			font-size: 0.8rem;
 			margin-top: -0.75rem;
 		}
@@ -52,16 +58,19 @@
 			margin: 0 0 (_size(element-margin) * 2) 0;
 			text-align: center;
 
-			> :last-child {
+			// >
+			:last-child {
 				margin-bottom: 0;
 			}
 
-			> p {
+			// >
+			p {
 				margin-top: 0;
 				text-align: center;
 			}
 
-			> .date {
+			// >
+			.date {
 				font-size: 1rem;
 				margin: 0 0 (_size(element-margin) * 2) 0;
 
