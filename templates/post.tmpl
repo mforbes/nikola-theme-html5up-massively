@@ -32,6 +32,9 @@
 		 itemscope="itemscope" itemtype="http://schema.org/Article">
 	   {{ pheader.html_post_header() }}
 		 <div class="e-content entry-content" itemprop="articleBody text">
+			 {% if post.meta('image') %}
+				 <div class="image main"><img src="post.meta('image')" alt="" /></div>
+			 {% endif %}
 			 {{ post.text() }}
 		 </div>
      <aside class="postpromonav">
