@@ -16,6 +16,9 @@
 					<a href="{{ post.permalink(lang) }}" class="image fit">
 						<img src="{{ post.meta('image') or '/images/default.jpg' }}" alt="" />
 					</a>
+					{% if post.meta('description') %}
+						<p>{{ post.meta('description') }}</p>
+					{% endif %}
 					{{ post.text(teaser_only=True, show_read_more_link=False) }}
 					<ul class="actions">
 						<li><a href="{{ post.permalink(lang) }}" class="button">Full Story</a></li>

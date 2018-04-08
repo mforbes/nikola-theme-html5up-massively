@@ -7,13 +7,18 @@
 
 {% block content %}
 	<article
-		 class="post-{{ post.meta('type') }} storypage"
+		 class="post post-{{ post.meta('type') }} storypage"
 		 itemscope="itemscope"
 		 itemtype="http://schema.org/Article">
-     <header>
+     <header class="major">
+			 <span class="date">{{ post.formatted_date('%-d %B %Y')|e }}</span>
        {{ pheader.html_title() }}
        {{ pheader.html_translations(post) }}
+			 <p>{{ post.description() }}</p>
      </header>
+		 {% if post.meta('image') %}
+			 <div class="image main"><img src="{{ post.meta('image') }}" alt="" /></div>
+		 {% endif %}
      <div class="e-content entry-content" itemprop="articleBody text">
 			 {{ post.text() }}			
      </div>
