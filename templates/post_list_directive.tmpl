@@ -5,7 +5,7 @@
 	<section class="posts post-list" id="{{ post_list_id }}">
 		{% if posts %}
 			{% for post in posts %}
-				{% if post.use_in_feeds %}
+				{% if not post.is_draft %}
 					<article class="post-list-item">
 						<header>
 							<span class="date">

@@ -4,7 +4,7 @@
 	<!-- Begin post-list {{ post_list_id }} -->
 	{% if posts %}
 		{% for post in posts %}
-			{% if post.use_in_feeds %}			
+			{% if post.is_draft %}			
 				<article class="post-list-item post featured">
 					<header class="major">
 						<span class="date">
