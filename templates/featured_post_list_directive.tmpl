@@ -10,10 +10,13 @@
 						{{ post.formatted_date(date_format)|e }}
 					</span>
 					<h1><a href="{{ post.permalink(lang) }}">
-							{{ post.title(lang)|e }}
-					</a></h1>
-					{{ post.text(teaser_only=True, show_read_more_link=False) }}
-					<a href="{{ post.permalink(lang) }}" class="image fit">
+							{% if post.meta('escape') == "True" %}
+								{{ post.title()|e }}
+							{% else %}
+					{{ post.title() }}
+				{% endif %}</a></h1>
+				{{ post.text(teaser_only=True, show_read_more_link=False) }}
+				<a href="{{ post.permalink(lang) }}" class="image fit">
 						<img src="{{ post.meta('image') or '/images/default.jpg' }}" alt="" />
 				</header>
 				<ul class="actions">

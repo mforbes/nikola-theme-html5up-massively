@@ -11,7 +11,11 @@
 							{{ post.formatted_date(date_format)|e }}
 						</span>
 						<h1><a href="{{ post.permalink(lang) }}">
-								{{ post.title(lang)|e }}</a></h1>
+								{% if post.meta('escape') == "True" %}
+									{{ post.title()|e }}
+								{% else %}
+									{{ post.title() }}
+								{% endif %}</a></h1>
 					</header>
 					<a href="{{ post.permalink(lang) }}" class="image fit">
 						<img src="{{ post.meta('image') or '/images/default.jpg' }}" alt="" />
