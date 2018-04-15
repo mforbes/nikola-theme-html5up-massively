@@ -4,25 +4,28 @@
 	<!-- Begin post-list {{ post_list_id }} -->
 	{% if posts %}
 		{% for post in posts %}
-			<article class="post-list-item post featured">
-				<header class="major">
-					<span class="date">
-						{{ post.formatted_date(date_format)|e }}
-					</span>
-					<h1><a href="{{ post.permalink(lang) }}">
-							{% if post.meta('escape') == "True" %}
-								{{ post.title()|e }}
-							{% else %}
-					{{ post.title() }}
-				{% endif %}</a></h1>
-				{{ post.text(teaser_only=True, show_read_more_link=False) }}
-				<a href="{{ post.permalink(lang) }}" class="image fit">
-						<img src="{{ post.meta('image') or '/images/default.jpg' }}" alt="" />
-				</header>
-				<ul class="actions">
-					<li><a href="{{ post.permalink(lang) }}" class="button">Full Story</a></li>
-				</ul>
-			</article>
+			{% if post.use_in_feeds %}			
+				<article class="post-list-item post featured">
+					<header class="major">
+						<span class="date">
+							{{ post.formatted_date(date_format)|e }}
+						</span>
+						<h1><a href="{{ post.permalink(lang) }}">
+								{% if post.meta('escape') == "True" %}
+									{{ post.title()|e }}
+								{% else %}
+						{{ post.title() }}
+					{% endif %}</a></h1>
+					{{ post.text(teaser_only=True, show_read_more_link=False) }}
+					<a href="{{ post.permalink(lang) }}" class="image fit">
+							<img src="{{ post.meta('image') or '/images/default.jpg' }}" alt="" />
+					</header>
+					<ul class="actions">
+						<li><a href="{{ post.permalink(lang) }}"
+									 class="button">Full Story</a></li>
+					</ul>
+				</article>
+			{% endif %}
 		{% endfor %}
   {% endif %}
 	<!-- End post-list {{ post_list_id }} -->
